@@ -1,152 +1,562 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Linha do Tempo da Grande Depressão</title>
-  <!-- Manter o mesmo estilo CSS do exemplo anterior -->
-  <style>
-    /* Estilos idênticos ao exemplo fornecido */
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Crise de 1929 - Uma Análise Global</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        
+        .logo {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .intro-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .card:hover .card-img img {
+            transform: scale(1.05);
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .card-text {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+        
+        .read-more {
+            display: inline-block;
+            color: var(--accent-color);
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .read-more:hover {
+            color: #c0392b;
+        }
+        
+        .timeline-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--light-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12px;
+            background-color: white;
+            border: 4px solid var(--accent-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid white;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent white;
+        }
+        
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid white;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent white transparent transparent;
+        }
+        
+        .right::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-date {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .quote-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+        
+        .quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto 1rem;
+        }
+        
+        .quote-author {
+            font-weight: 500;
+            opacity: 0.8;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        
+        .footer-links li {
+            margin: 0 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+            }
+            
+            .nav-links li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+            
+            .left::after, .right::after {
+                left: 18px;
+            }
+            
+            .right {
+                left: 0%;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <header>
-    <h1>Grande Depressão 1929-1939</h1>
+    <header>
+        <div class="header-content">
+            <h1>A Crise de 1929</h1>
+            <p class="subtitle">Uma análise global do colapso econômico que redefiniu o século XX</p>
+        </div>
+    </header>
+    
     <nav>
-      <a href="#1920">1920s</a>
-      <a href="#1929">1929</a>
-      <a href="#1930">1930</a>
-      <a href="#1933">1933</a>
-      <a href="#1935">1935</a>
-      <a href="#1939">1939</a>
+        <div class="nav-container">
+            <div class="logo">CRISE 1929</div>
+            <ul class="nav-links">
+                <li><a href="#origens">Origens</a></li>
+                <li><a href="#impacto">Impacto Global</a></li>
+                <li><a href="#respostas">Respostas</a></li>
+                <li><a href="#legado">Legado</a></li>
+                <li><a href="#fontes">Fontes</a></li>
+            </ul>
+        </div>
     </nav>
-  </header>
-
-  <main>
-    <!-- Contexto Pré-Crise -->
-    <section id="1920" class="anchor">
-      <h2>1920 - Os Loucos Anos 20</h2>
-      <div class="highlight" style="border-color: #4CAF50;">
-        <p><strong>Euforia Econômica:</strong> EUA produzem 42% dos bens mundiais, mas salários não acompanham a produção</p>
-      </div>
-      <p>Após a 1ª Guerra, os EUA emergem como potência industrial:</p>
-      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1rem 0;">
-        <div style="padding: 1rem; background: #f5f5f5;">
-          <h3>Produção Industrial</h3>
-          <p>↑ 50% (1921-1929)</p>
+    
+    <div class="container">
+        <section class="intro-section">
+            <h2 class="section-title">Introdução</h2>
+            <p>A Crise de 1929, também conhecida como a Grande Depressão, foi o mais devastador colapso econômico do século XX. Iniciada com a quebra da bolsa de valores de Nova York em outubro de 1929, a crise rapidamente se espalhou pelo mundo, expondo as fragilidades do sistema capitalista e do padrão-ouro.</p>
+            <p>Este site explora as múltiplas dimensões da crise - desde suas causas econômicas até seus impactos sociais, culturais e políticos em diversos países, com ênfase especial nas respostas governamentais e no legado que moldou o mundo contemporâneo.</p>
+        </section>
+        
+        <section id="impacto">
+            <h2 class="section-title">Impacto Global</h2>
+            <p>A crise não se limitou aos Estados Unidos. Países em todos os continentes sofreram os efeitos do colapso econômico, cada um com suas particularidades:</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1542223189-67a03fa0f0bd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="América Latina">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">América Latina</h3>
+                        <p class="card-text">Argentina e México enfrentaram quedas brutais nos preços de suas commodities, levando a instabilidade política e reformas estruturais.</p>
+                        <a href="#" class="read-more">Saiba mais</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Europa">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Europa</h3>
+                        <p class="card-text">A crise acelerou a ascensão de regimes autoritários e intensificou as tensões que levariam à Segunda Guerra Mundial.</p>
+                        <a href="#" class="read-more">Saiba mais</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1536599424071-0b215a388ba7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Ásia">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Ásia e África</h3>
+                        <p class="card-text">Colônias europeias sofreram com a queda na demanda por matérias-primas, alimentando movimentos anticoloniais.</p>
+                        <a href="#" class="read-more">Saiba mais</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="timeline-section">
+            <h2 class="section-title">Linha do Tempo</h2>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1929</div>
+                        <p>24 de Outubro - Quinta-Feira Negra: colapso da bolsa de Nova York após período de especulação desenfreada.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1930-1932</div>
+                        <p>Queda de 30% no PIB mundial. Taxa de desemprego chega a 25% nos EUA e até 33% em alguns países europeus.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1933</div>
+                        <p>Franklin D. Roosevelt assume a presidência dos EUA e lança o New Deal, marcando uma nova era de intervenção estatal na economia.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1936</div>
+                        <p>Keynes publica "A Teoria Geral do Emprego, do Juro e da Moeda", oferecendo novas bases teóricas para entender a crise.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1939</div>
+                        <p>Com o início da Segunda Guerra Mundial, a economia global começa a se recuperar através da produção bélica.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="quote-section">
+            <p class="quote">"A Grande Depressão, como a revolução francesa, fechou uma época e iniciou outra. Dos seus escombros emergiu a concepção moderna do papel do Estado na economia."</p>
+            <p class="quote-author">- John Kenneth Galbraith, economista</p>
+        </section>
+        
+        <section id="legado">
+            <h2 class="section-title">Legado e Lições</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Economia">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Economia</h3>
+                        <p class="card-text">A crise levou ao desenvolvimento da macroeconomia moderna e à criação de instituições como o FMI e o Banco Mundial.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Política">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Política</h3>
+                        <p class="card-text">O colapso econômico minou a fé na democracia liberal em muitos países, pavimentando o caminho para regimes autoritários.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Sociedade">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Sociedade</h3>
+                        <p class="card-text">A experiência da depressão moldou atitudes em relação ao trabalho, consumo e segurança econômica por gerações.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="fontes" class="intro-section">
+            <h2 class="section-title">Fontes Acadêmicas</h2>
+            <p>Para aprofundar seu conhecimento sobre a Crise de 1929, recomendamos as seguintes obras acadêmicas:</p>
+            <ul style="margin-top: 1rem; margin-left: 2rem; color: var(--text-light);">
+                <li style="margin-bottom: 0.5rem;">Eichengreen, B. (1992). <em>Golden Fetters: The Gold Standard and the Great Depression</em>.</li>
+                <li style="margin-bottom: 0.5rem;">Temin, P. (1976). <em>Did Monetary Forces Cause the Great Depression?</em>.</li>
+                <li style="margin-bottom: 0.5rem;">Bernstein, I. (1960). <em>The Lean Years: A History of the American Worker, 1920-1933</em>.</li>
+                <li style="margin-bottom: 0.5rem;">Fearon, P. (1979). <em>The Origins and Nature of the Great Slump 1929-1932</em>.</li>
+            </ul>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <h3>A Crise de 1929</h3>
+            <p>Um projeto educacional sobre um dos eventos mais marcantes do século XX</p>
+            <ul class="footer-links">
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#">Termos de Uso</a></li>
+                <li><a href="#">Política de Privacidade</a></li>
+            </ul>
+            <p class="copyright">© 2023 Todos os direitos reservados</p>
         </div>
-        <div style="padding: 1rem; background: #f5f5f5;">
-          <h3>Especulação Bolsista</h3>
-          <p>Valores inflados em 400%</p>
-        </div>
-      </div>
-      <p>A economia baseada no crédito fácil e superprodução criava uma bolha prestes a estourar...</p>
-    </section>
-
-    <!-- Crise -->
-    <section id="1929" class="anchor">
-      <h2>1929 - O Colapso</h2>
-      <div class="highlight" style="border-color: #f44336;">
-        <p><strong>24/10/1929 - Quinta-Feira Negra:</strong> 13 milhões de ações vendidas em pânico</p>
-      </div>
-      <h3>Efeitos Imediatos</h3>
-      <ul style="margin: 1rem 0 1rem 2rem;">
-        <li>Perdas de US$ 30 bilhões em 1 semana</li>
-        <li>5,000 bancos faliram até 1932</li>
-        <li>Desemprego: 3% → 25% (1933)</li>
-      </ul>
-      <div style="background: #fff3e0; padding: 1rem; border-radius: 5px;">
-        <h4>Efeito Dominó Global</h4>
-        <p>EUA retiram empréstimos da Europa → Colapso do sistema financeiro internacional</p>
-      </div>
-    </section>
-
-    <!-- Respostas Iniciais -->
-    <section id="1930" class="anchor">
-      <h2>1930 - Aprofundamento da Crise</h2>
-      <div class="highlight">
-        <p><strong>Erros Políticos:</strong> Tarifa Smoot-Hawley aumenta taxas de importação em 20%</p>
-      </div>
-      <h3>Consequências Globais</h3>
-      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-        <div style="flex: 1; min-width: 250px; padding: 1rem; background: #f8f9fa;">
-          <h4>Alemanha</h4>
-          <p>Desemprego: 44% (1932)</p>
-        </div>
-        <div style="flex: 1; min-width: 250px; padding: 1rem; background: #f8f9fa;">
-          <h4>Brasil</h4>
-          <p>Queda de 70% no preço do café</p>
-        </div>
-      </div>
-      <p>A crise alimentou movimentos extremistas: NSDAP alemão salta de 2.6% (1928) para 37% (1932)</p>
-    </section>
-
-    <!-- New Deal -->
-    <section id="1933" class="anchor">
-      <h2>1933 - O New Deal</h2>
-      <div class="highlight" style="border-color: #2196F3;">
-        <p>F.D. Roosevelt: "A única coisa que devemos temer é o próprio medo"</p>
-      </div>
-      <h3>Principais Programas</h3>
-      <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
-        <tr style="background: #0077cc; color: white;">
-          <th style="padding: 0.75rem;">Programa</th>
-          <th>Impacto</th>
-        </tr>
-        <tr>
-          <td style="padding: 0.75rem; border-bottom: 1px solid #ddd;">TVA</td>
-          <td>Eletrificação rural</td>
-        </tr>
-        <tr>
-          <td style="padding: 0.75rem; border-bottom: 1px solid #ddd;">CCC</td>
-          <td>3 milhões de empregos em conservação</td>
-        </tr>
-      </table>
-      <p>Entre 1933-1939, o governo investiu US$ 50 bilhões (6% do PIB)</p>
-    </section>
-
-    <!-- Cultura e Sociedade -->
-    <section id="1935" class="anchor">
-      <h2>1935 - Respostas Culturais</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-        <div style="text-align: center;">
-          <img src="vinhas-da-ira.jpg" alt="Capa do livro" style="width: 150px; height: auto;">
-          <p><em>As Vinhas da Ira</em> (1939)</p>
-        </div>
-        <div style="text-align: center;">
-          <img src="modern-times.jpg" alt="Cena do filme" style="width: 150px; height: auto;">
-          <p><em>Tempos Modernos</em> (1936)</p>
-        </div>
-      </div>
-      <div class="highlight">
-        <p>A arte documentou o sofrimento: Fotógrafos da FSA registraram 270,000 imagens da pobreza</p>
-      </div>
-    </section>
-
-    <!-- Fim da Crise -->
-    <section id="1939" class="anchor">
-      <h2>1939 - Legado e Fim</h2>
-      <div style="background: #e8f5e9; padding: 1rem; border-radius: 5px;">
-        <h3>Indicadores Econômicos (1939)</h3>
-        <ul>
-          <li>Desemprego: 15% (vs 25% em 1933)</li>
-          <li>PIB: 90% do nível pré-1929</li>
-        </ul>
-      </div>
-      <div class="highlight" style="border-color: #673AB7;">
-        <p>A 2ª Guerra Mundial (1939) finalmente impulsionou a recuperação total através da produção bélica</p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2024 - Linha do Tempo da Grande Depressão | Fonte: Eichengreen, B. (1992). Golden Fetters</p>
-  </footer>
-
-  <!-- Manter o mesmo JavaScript do exemplo anterior -->
-  <script>
-    // Código JavaScript idêntico ao exemplo fornecido
-  </script>
+    </footer>
 </body>
 </html>
